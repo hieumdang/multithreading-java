@@ -1,0 +1,89 @@
+public class mypackage {
+
+ public static void main(String[] args) {
+  // TODO Auto-generated method stub
+  myThread t1 = new myThread("Average");
+  t1.start();
+  myThread t2= new myThread("Max");
+  t2.start();
+  myThread t3 = new myThread("Min");
+  t3.start();
+  myThread t4= new myThread("Median");
+  t4.start();
+  myThread t5 = new myThread("Std");
+  t5.start();
+
+  double[] scores = { 90, 81, 78, 95, 79 ,72 ,85};
+  
+ }
+}
+
+class GlobalValue{
+	  public static double avg = 0.0;
+	  public static double max =0.0;
+	  public static double min =0.0;
+	  public static double median =0.0;
+	  public static double std =0.0; 
+	}
+
+
+class averaging implements Runnable {
+    double a,b,c,d,e; 
+    public averaging(double a, double b, double c, double d, double e){
+        this.a = a;
+        this.b = b;
+        this.c = c;
+        this.d = d;
+        this.e = e;
+    }
+    public void run() {
+        averaging(a,b,c,d,e);
+    }
+   
+	private void averaging(double a2, double b2, double c2, double d2, double e2) {
+		// TODO Auto-generated method stub
+		int sum=0;
+	    for(int i=0;i<=7;i++){
+	        sum += i;
+	        try {
+	            Thread.sleep(1000);
+	           } 
+	        catch (InterruptedException e) {
+	            System.out.println("Thread has been interrupted");
+	    }
+	    }
+	}
+	
+}
+
+
+class myThread implements Runnable {
+ Thread my_thread;
+ private String thread_name;
+ myThread(String name) {
+	 thread_name = name;
+ }
+ @Override
+ public void run() {
+  System.out.println("Thread running" + thread_name);
+  for (int i = 0; i < 6; i++) {
+   System.out.println(i);
+   System.out.println(thread_name);
+   try {
+    Thread.sleep(1000);
+   } catch (InterruptedException e) {
+    System.out.println("Thread has been interrupted");
+   }
+  }
+ }
+ public void start() {
+  System.out.println("Thread started");
+  if (my_thread == null) {
+	  my_thread = new Thread(this, thread_name);
+	  my_thread.start();
+  }
+
+ }
+}
+
+//90 81 78 95 79 72 85
